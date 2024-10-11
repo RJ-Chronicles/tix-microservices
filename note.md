@@ -368,4 +368,21 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
     JSON.stringify(personTwo)
     "1"
 
-  # Then Signin flow
+  # the Signin flow
+    Does a user with this email exist? if not response with an error
+    Compare the passwordsof the stored user and the supplied password
+    if passwords are the same, we're good!
+    User is not considered to logged in. Send them a JWT  in cookie
+
+  # Request validation middleware:
+    import {Request, Response, NextFunction}from 'express'
+    import { validationResult } from 'express-validator'
+    import { RequestValidationError } from '../errors'
+
+    export const validateRequest = (req : Request, res: Response, next: NextFunction) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new RequestValidationError(errors.array())
+        }
+        next();
+    }
