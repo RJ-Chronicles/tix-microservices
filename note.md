@@ -301,6 +301,71 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
         done();
     })
 
+  # 8: fundamental Authentication Strategies:
+    Sync communtioncation: Rely on auth service
+    Async: individual services rely on th auth service as Gateway
+
+    
+  # 9: Huge issue with authentication strategies
+    
   
+  # 10: Solving issue with option 2:
+    If the JWT/cookies is older than 30 mins, reach to auth service
+    Short-lived in memory cache recording banned users
+
+  # 11: cookies vs JWT tokens
+    Cookies are small pieces of data stored in the client’s browser, sent to and from the server with each HTTP request.
+
+    JWT: Ideal for stateless authentication, includes all necessary information within the token, suitable for API-based architectures.
 
 
+    Transfport mechanism, Moves any kind of data between browser and server, automatically managed by the browser.
+
+    Authentication/authorization mechanism, stores any data we want, We have to manage it manually
+
+  # 12 Microservice Auth requirementslt 
+    Must be able to tell us details about a user
+    Must be able to handle authorization info
+    Must have a buit-in tamper-resistant to expire or invalidate itself
+    Must be easily understood between different languages
+    Must not require some kind of backing data store on the server.
+
+  # cookies and Encryption
+    npm i cookie-session
+
+  # Generate JSON web token
+    req.session.views = (req.session.views || 0) + 1
+    npm i jsonwebtoken
+    sign to create token(payload, key)
+    verify
+    base64
+    jwt.io
+    
+
+  # Securely storing Secrets
+    Expose secret with environment varible.
+
+  # Creating and accessing secrets
+    kubectl create secret generic jwt-secret --from-literal=jwt=asdf
+    kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
+
+    kubectl describe pod pod_name
+
+  # Accessing env variable inside the POD
+    process.env.JWT_KEY!
+    ! denotes that this type check is already completed
+
+  # Common response Property:
+    Should return consistent looking responses.
+    _id, mongo
+    id: mySql, postgresql
+
+  # Formatting JSON properties
+    const person = {name: 'Jack'}
+    JSON.stringify(person)
+
+    const personTwo = {name: 'alex', toJSON() {return 1}}
+    JSON.stringify(personTwo)
+    "1"
+
+  # Then Signin flow
