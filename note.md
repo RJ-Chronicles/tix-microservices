@@ -393,4 +393,4 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
     If yes, and JWT is valid, send back the info stored inside the JWT (the payload)
 
   # Signout Route
-    
+    req.session = null
