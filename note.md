@@ -386,3 +386,11 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
         }
         next();
     }
+
+  # Current User
+    Does This user have a 'req.session.jwt' set?
+    If it is not set, or IF THE JWT is inalid, return early
+    If yes, and JWT is valid, send back the info stored inside the JWT (the payload)
+
+  # Signout Route
+    req.session = null
