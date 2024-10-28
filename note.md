@@ -394,3 +394,39 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
 
   # Signout Route
     req.session = null
+
+
+# Testing Isolated Microservice
+  # Scope of testing
+    Test a single piece of code in insolation      : Single middleware
+
+    Test how different pieces of code word together: Request flowing through multiple middlewares to a request handler
+
+    Test how different components word together    : make request to service, ensure write to database was completed
+
+    Test how different Services work together      : Create a 'payment' at 'payments' service should affect the 'order' service
+
+    Middleware => Route Hanlders => Models => MongodB => Event Bus |
+  
+  # Testing Goals
+    Basic Request Handling
+    Unit test
+    Event emitting + receiving 
+    npm run test
+
+  # Testing Architecure
+    npm run test
+        |
+      Jest
+
+    Start in memory copy of MongoDB
+    Start up our express app
+    Use supertest library to make fake requests to our express app
+    Run assertions to make sure the request did the right thing
+
+  # Index to app refactor
+    refactor index file code in app and export app
+    import app in index file to start listen on particular port
+
+    Few dependancies to make test environment
+      npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
