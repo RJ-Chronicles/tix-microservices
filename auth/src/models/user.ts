@@ -28,13 +28,14 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: true
+        require: true,
     },
 
 },{
     toJSON: {
-        transform(doc, ret) {
-            ret.id = ret._id;
+        virtuals: true,
+        versionKey: false,
+        transform(doc, ret:any) {
             delete ret._id;
             delete ret.password;
             delete ret.__v;
@@ -57,7 +58,3 @@ const User = mongoose.model<UserDoc, UserModel>('User', userSchema)
 
 export  { User }
 
-// buildUser fuction expect email and passowrd in string format. If there is type missmatch ofr invalid key pair typescript will throw an error
-// const buildUser = (attrs: UserAttrs) => {
-//     return new User(attrs)
-// }
