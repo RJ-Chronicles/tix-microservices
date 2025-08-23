@@ -347,7 +347,7 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
 
   # Creating and accessing secrets
     kubectl create secret generic jwt-secret --from-literal=jwt=asdf
-    kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
+    kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf_secret
 
     kubectl describe pod pod_name
 
