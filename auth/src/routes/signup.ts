@@ -22,7 +22,7 @@ router.post(
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       console.log("Email in use");
-      throw new BadRequestError("Eamil in use");
+      throw new BadRequestError("Email in use");
     }
     const user = User.build({ email, password });
     await user.save();
@@ -45,8 +45,3 @@ router.post(
 );
 
 export default router;
-
-// throw new Error('Invalid email or password');
-// return res.status(400).json({ errors: errors.array() });
-// throw new Error('Error connecting to Database');
-// res.send("Hello buddy signup");
