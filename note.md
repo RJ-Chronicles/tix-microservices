@@ -430,3 +430,36 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
 
     Few dependancies to make test environment
       npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
+
+  # Test Environment setup
+    "test": "jest --watchAll --no-cache"
+
+  # First Test
+    request(app)
+      .post('api/users/signup')
+      .send({
+        email: "test@gmail.com",
+        password: "password"
+      })
+      .expect(201)
+
+  # Chaning node env during test
+    app.use(cookieSession({
+        signed: false,
+        secure: process.env.NODE_ENV !== 'test',
+    }))
+
+  # React App
+    - SSR (Server side rendering)
+      browser ==> NextJs => auth/ Order/ Tick
+
+      - fully rendered html file with content
+      - user can see content much more quickly.
+      - Lot more better for SEO
+
+  # Initial setup
+    build client image
+      docker build -t stram/client .
+
+    push to docker hub
+      docker push stram/client
