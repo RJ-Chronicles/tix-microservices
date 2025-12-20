@@ -15,6 +15,25 @@ spec:
       containers:
         - name: client
           image: docker.io/stram/client
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 20
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
 
 ---
 apiVersion: v1
