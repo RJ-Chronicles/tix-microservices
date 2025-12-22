@@ -11,7 +11,8 @@ app.set('trust proxy', true);
 app.use(json());
 app.use(cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
+    // Only mark cookies secure in production (allows local development over HTTP)
+    secure: process.env.NODE_ENV === 'production',
 }))
 app.use(healthCheckRouter)
 app.use(currrentUserRouter);
