@@ -463,3 +463,25 @@ client  | common  |<---- | Ordr [node, mongo]|--------->| streaming |
 
     push to docker hub
       docker push stram/client
+
+
+# code share:
+  - Copy paste from one repo to another
+  - Create github submodules
+  - Create npm library and share accross private, organization or public
+
+
+
+  # create library
+    Login to npm 
+    right click on avatar
+    Click on add organization
+    give unique name
+
+    - Login from terminal
+    - npm publish --access
+    - npm version patch
+
+    npm install express express-validator cookie-session jsonwebtoken
+    
+    npm install @types/cookie-session @types/express @types-jsonwebtoken

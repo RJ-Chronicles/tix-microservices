@@ -8,12 +8,16 @@ const LandingPage = ({ currentUser }) => {
   );
 };
 
-// LandingPage.getInitialProps = async context => {
-//   console.log('LANDING PAGE!');
-//   const client = buildClient(context);
-//   const { data } = await client.get('/api/users/currentuser');
-
-//   return data;
-// };
+LandingPage.getInitialProps = async context => {
+  try {
+    const client = buildClient(context);
+    const { data } = await client.get('/api/users/currentuser');
+    return data;
+  } catch (err) {
+    console.log('Error fetching current user in LandingPage:', err);
+    // If auth service returns 404 or is temporarily unavailable, return no user instead of crashing
+    return { currentUser: null };
+  }
+};
 
 export default LandingPage;

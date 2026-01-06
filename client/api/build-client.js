@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 export default ({ req }) => {
+
+  console.log('build-client called');
+  console.log('req headers:', req ? req.headers : 'no req');
   if (typeof window === 'undefined') {
     // We are on the server — talk directly to the auth service inside the cluster
     return axios.create({
